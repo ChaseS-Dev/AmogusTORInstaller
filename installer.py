@@ -10,7 +10,7 @@ def run_steamcmd(commands):
         sys.exit(1)
 
 # First run to check for updates
-update_cmd = [r"C:\Users\ThaZe\Desktop\amogustest\steamcmd.exe", "+quit"]
+update_cmd = [os.path.join(os.getcwd(), "steamcmd.exe"), "+quit"]
 print("Checking for SteamCMD updates...")
 run_steamcmd(update_cmd)
 
@@ -19,7 +19,7 @@ username = input("Enter your Steam username: ")
 password = input("Enter your Steam password: ")
 
 cmd = [
-    r"C:\Users\ThaZe\Desktop\amogustest\steamcmd.exe",
+    os.path.join(os.getcwd(), "steamcmd.exe"),
     f"+login {username} {password}",
     "+download_depot 945360 945361 5207443046106116882",
     "+quit"
