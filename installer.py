@@ -1,4 +1,4 @@
-import os.path
+import os
 import shutil
 import subprocess
 import sys
@@ -9,7 +9,7 @@ def run_steamcmd(commands):
         print("SteamCMD encountered an error.")
         sys.exit(1)
 
-# First run to check for updates
+# First run to check for steamcmd updates
 update_cmd = [os.path.join(os.getcwd(), "steamcmd.exe"), "+quit"]
 print("Checking for SteamCMD updates...")
 run_steamcmd(update_cmd)
@@ -30,13 +30,16 @@ run_steamcmd(cmd)
 root_dir = os.getcwd()
 src_dir = os.path.join(root_dir, "steamapps", "content", "app_945360", "depot_945361")
 
+if not os.path.isdir(src_dir):
+    input("Depot Files not found, installation failed\nPress Enter to exit...")
+    sys.exit(1)
+
 for item in os.listdir(src_dir):
     s = os.path.join(src_dir, item)
     d = os.path.join(root_dir, item)
     shutil.move(s, d)
-print("Files moved to root directory")
+print("Depot files moved to folder root directory")
 
-import os
 
 locallow = os.path.join(os.getenv("USERPROFILE"), "AppData", "LocalLow")
 file_path = os.path.join(locallow, "Innersloth", "Among Us", "settings.amogus")
